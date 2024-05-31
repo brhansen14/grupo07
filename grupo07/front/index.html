@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+    crossorigin="anonymous">
+    </script>
+    
+    
+    <title>Meu Blog </title>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class ="container">
+                <div class="navbar-nav">
+                    <a href = "#design" class="active">Home</a>
+                    <a href = "#blog">Blog</a>
+                    <a href = "#sobre">Sobre</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<!------------fim do header-------------->
+
+<!-----design------>
+    <section class="design" id="design">
+        <div class="container">
+            <div class="title">
+                <h2>Algumas fotos que fiz pelo caminho</h2>
+                <p>Um pouco também sobre a história de cada lugar</p>
+            </div>
+
+            <div class="design-content">
+                <!-----item-->
+                <div class="design-item">
+                    <div class="design-img">
+                        <img src="img/berlim.jpg" alt="">
+                        <span>Berlim</span>
+                    </div>
+                    <div class="design-title">
+                        <a href="#">Portão de Brandemburgo, um pouco sobra este monumento em Berlim</a>
+                    </div>
+                </div>
+                <!--fim-do-item-->
+                <!-----item-->
+                <div class="design-item">
+                    <div class="design-img">
+                        <img src="img/roma.jpg" alt="">
+                        <span>Roma</span>
+                    </div>
+                    <div class="design-title">
+                        <a href="#">Panteão é um edifício em Roma,  é o edifício romano mais conservado do mundo, é uma síntese perfeita de harmonia e inteligência construtiva </a>
+                    </div>
+                </div>
+                <!--fim-do-item-->
+                <!-----item-->
+                <div class="design-item">
+                    <div class="design-img">
+                        <img src="img/paris.jpeg" alt="">
+                        <span>Paris</span>
+                    </div>
+                    <div class="design-title">
+                        <a href="#">O Arco do Triunfo é um monumento localizado na cidade de Paris, construído em comemoração às vitórias militares de Napoleão Bonaparte</a>
+                    </div>
+                </div>
+                <!--fim-do-item-->
+            </div>
+        </div>
+    </section>
+    <!----------fim do design-->
+
+    <!--------------Blog-->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="title">
+                <h2>Ultimos Blogs</h2>
+                <p>recentes blogs sobre as minhas viagens</p>
+            </div>
+            <div class="blog-content">
+                <!-------item-->
+            <div class="blog-item">
+                        <div class="blog-text" id="textsContainer">
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const textsContainer = document.getElementById('textsContainer');
+
+                                fetch('../back/data/get_texts.php') // buscar os textos do banco de dados
+                                .then(response => response.json())
+                                .then(posts => {
+                                    posts.forEach(text => {
+                                        const textDiv = document.createElement('div');
+                                        textDiv.innerHTML = `
+                                            <h1>${text.title}</h1>
+                                            <p>${text.content}</p>
+                                        `;
+                                        textsContainer.appendChild(textDiv);
+                                    });
+                                })
+                                .catch(error => console.error('Error:', error));
+                            });
+                        </script>
+                        </div>
+                            <button class="btn btn-primary" id="btn1" onclick="expandirConteudo('texto1')" type="button">Comentários</button>
+                            <div id="texto1" class="texto-hidden">
+                                <form id="commentForm" class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Seu nome</label>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Seu nome" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="comment" class="form-label">Seu comentário</label>
+                                        <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Seu comentário" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Publicar</button>
+                                </form>
+                                <div id="commentsContainer" class="mt-3"></div>
+                                <button class="btn btn-secondary blog-text" onclick="fecharConteudo('texto1')">Esconder</button>
+                            </div>
+                            
+                </div>
+            </div>
+            <!----fim do item-->
+            </div>
+        </div>
+    </section>
+    <!----fim do blog----->
+
+    <!---------Sobre-->
+    <section class="sobre" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <img src="img/viajante.jpg" alt="">
+                </div>
+                <div class="sobre-texto">
+                    <div class="title">
+                        <h2>Carlos Zebra</h2>
+                        <p>Viagems são a minha paixão</p>
+                    </div>
+                    <p>Oi! Eu sou Carlos Zebra, um jovem aventureiro de 28 anos que deixou o Brasil para explorar o mundo e viver experiências únicas em cada canto do planeta. Desde pequeno, sempre fui fascinado por diferentes culturas, línguas e histórias. Acredito que viajar é a melhor maneira de aprender sobre o mundo e sobre si mesmo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!----------fim do sobre-->
+    <script src="script.js"></script>    
+    <!----------footer------>
+    <footer>
+        <span>Página Com Minhas Viagems! </span>
+
+        <button class="btn btn-secondary" onclick="location.href='../back/data/index.php'">Login</button>
+    </footer>
+
+    
+
+</body>
+</html>
